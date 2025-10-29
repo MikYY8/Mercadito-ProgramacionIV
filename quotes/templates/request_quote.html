@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Solicitar presupuesto para {{ product.title }}</h2>
+<form method="post">
+  {% csrf_token %}
+  <label>Email</label>
+  <input type="email" name="email" required>
+  <label>Mensaje (opcional)</label>
+  <textarea name="message"></textarea>
+  <button class="btn-primary" type="submit">Enviar presupuesto</button>
+</form>
+{% endblock %}

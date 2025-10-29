@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load static %}
+{% block title %}Inicio · Mercadito{% endblock %}
+
+{% block content %}
+<div class="home-container">
+  <h1>Bienvenido al Mercadito</h1>
+
+  {% if not user.is_authenticated %}
+    <p>Iniciá sesión para comprar, vender o intercambiar productos</p>
+    <div class="social-login">
+      <a href="{% provider_login_url 'google' %}" class="btn-social google">
+        <img src="{% static 'img/google.svg' %}" alt="Google" class="social-logo">
+      </a>
+      <a href="{% provider_login_url 'github' %}" class="btn-social github">
+        <img src="{% static 'img/github.svg' %}" alt="GitHub" class="social-logo">
+      </a>
+    </div>
+  {% else %}
+    <h2>Últimos productos</h2>
+    <div class="card-container">
+      {% for product in products %}
+        <div class="card">
+          <h3>{{ product.title }}</h3>
+          <p>{{ product.description|truncatewords:15 }}</p>
+          <p><strong>${{ product.price }}</strong></p>
+          <a href="{% url 'product-list' %}">Ver más productos</a>
+        </div>
+      {% empty %}
+        <p>No hay productos publicados todavía.</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
