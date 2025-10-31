@@ -39,10 +39,12 @@ urlpatterns = [
     #   path("api/", include(router.urls)),
     path("pago/<int:product_id>/", create_preference, name="crear-preferencia"),
     # duplicado ¿
-    path("", include("presence.urls")),
+    #   path("", include("presence.urls")),
     path("presence/", include("presence.urls", namespace="presence")),
-    path("chat/", include("simple_chat.urls", namespace="simple_chat")),
     path("quotes/", include("quotes.urls", namespace="quotes")),
+    path("api/", include("users.urls")),
+    path('telegram/', include('telegram_chat.urls')),
+    path("", include("telegram_chat.urls")),  # 👈 agrega esto
 
     # Swagger endpoints
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),

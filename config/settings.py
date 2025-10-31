@@ -10,6 +10,8 @@ DEBUG = env("DEBUG", default=True)
 ALLOWED_HOSTS = ["*"]
 MERCADOPAGO_ACCESS_TOKEN = os.getenv("MERCADOPAGO_ACCESS_TOKEN")
 MERCADOPAGO_PUBLIC_KEY = os.getenv("MERCADOPAGO_PUBLIC_KEY")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
 BASICS = [
 	"django.contrib.admin",
@@ -37,8 +39,9 @@ PROPIAS = [
     "perfil",
     "market_ai",
 	"presence",
-    "simple_chat",
     "quotes",
+    "users",
+    "telegram_chat",
 ]
 
 INSTALLED_APPS = BASICS + TERCEROS + PROPIAS
